@@ -1,0 +1,23 @@
+spring:
+    application:
+        name: bootcamp-rss-news
+    datasource:
+        driver-class-name: org.postgresql.Driver
+        url: jdbc:postgresql://localhost:5432/postgres
+        username: postgres
+        password: postgres
+    jpa:
+        hibernate:
+            ddl-auto: validate
+        open-in-view: false
+    liquibase:
+        change-log: classpath:db/changelog/changelog-master.yml
+server:
+    servlet:
+        context-path: "/api"
+rss:
+    url: https://ria.ru/export/rss2/archive/index.xml
+    update-scheduler-time: PT01H
+    pub-date-format: "E, d MMM yyyy HH:mm:ss Z"
+    pub-date-format-lang: en
+    pub-date-format-country: US

@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - changeSet:
+      id: 3
+      author: dkrot-by
+      preConditions:
+        - dbms:
+            type: postgresql
+        - onFail: CONTINUE
+      changes:
+        - sql:
+            sql: alter table news owner to postgres;

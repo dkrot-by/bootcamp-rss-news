@@ -1,0 +1,39 @@
+version: '3.5'
+services:
+
+  rss_db:
+    container_name: rss_db
+    image: postgres
+    restart: always
+    volumes:
+      - rss_db_data:/var/lib/postgresql/data
+    networks:
+      - rss-network
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=postgres
+
+  rss_app:
+    container_name: rss_app
+    depends_on:
+      - rss_db
+    build:
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      - rss-network
+    ports:
+      - 8080:8080
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://rss_db:5432/postgres
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+
+networks:
+  rss-network:
+
+volumes:
+  rss_db_data:

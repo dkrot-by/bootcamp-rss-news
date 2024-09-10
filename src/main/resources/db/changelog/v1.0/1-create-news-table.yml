@@ -1,0 +1,28 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: dkrot-by
+      changes:
+        - createTable:
+            tableName: news
+            columns:
+              - column:
+                  name: guid
+                  type: text
+                  constraints:
+                    nullable: false
+              - column:
+                  name: link
+                  type: text
+                  constraints:
+                    nullable: false
+              - column:
+                  name: title
+                  type: text
+                  constraints:
+                    nullable: false
+              - column:
+                  name: pub_date
+                  type: timestamp with time zone
+                  constraints:
+                    nullable: false
